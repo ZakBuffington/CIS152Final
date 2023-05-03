@@ -1,33 +1,53 @@
-async function fetchPlaylist(playlist) {
-    console.log(playlist)
+const videoIds = {
+  
 }
 
+async function fetchPlaylist(playlist) {
+  console.log(playlist)
+
+}
+
+
 class Video{
+  // Add videoId and keep track of in linked list to limit api calls
   constructor(value){
     this.next = null
     this.value = value
   }
 }
 
-class LinkedList{
+class VideoQueue{
   constructor(){
-    this.head = null
+    this.first = null
     this.size = 0
-    this.tail = null
+    this.last = null
   }
 
-  push(value){
+  enqueue(value){
     const newVideo = new Video(value)
-    if (!this.head){
-      this.head = newVideo
-      this.tail = this.head
+    if (!this.first){
+      this.first = newVideo
+      this.last = this.first
     } else {
-      this.tail.next = newVideo
-      this.tail = newVideo
+      this.last.next = newVideo
+      this.last = newVideo
     }
     this.size++
     return this
   }
+
+  dequeue(){
+    if (!this.first) return null
+    var holding = this.first
+    
+    if (this.first === this.last){
+      this.last = null
+    }
+    this.first = this.first.next
+    this.size--
+    return holding.value
+  }
+
 }
 
 /*function authenticate() {
