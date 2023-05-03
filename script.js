@@ -15,3 +15,22 @@ function loadClient() {
         .then(function() { console.log("GAPI client loaded for API"); },
               function(err) { console.error("Error loading GAPI client for API", err); });
 }
+
+// Make sure the client is loaded and sign-in is complete before calling this method.
+function execute() {
+    return gapi.client.youtube.playlists.list({
+      "part": [
+        "snippet,contentDetails"
+      ],
+      "maxResults": 25,
+      "mine": true
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+  gapi.load("client:auth2", function() {
+    gapi.auth2.init({client_id: "YOUR_CLIENT_ID"});
+});
