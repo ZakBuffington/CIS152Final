@@ -1,8 +1,36 @@
-async function fetchData() {
-
+async function fetchPlaylist(playlist) {
+    console.log(playlist)
 }
 
-function authenticate() {
+class Video{
+  constructor(value){
+    this.next = null
+    this.value = value
+  }
+}
+
+class LinkedList{
+  constructor(){
+    this.head = null
+    this.size = 0
+    this.tail = null
+  }
+
+  push(value){
+    const newVideo = new Video(value)
+    if (!this.head){
+      this.head = newVideo
+      this.tail = this.head
+    } else {
+      this.tail.next = newVideo
+      this.tail = newVideo
+    }
+    this.size++
+    return this
+  }
+}
+
+/*function authenticate() {
     return gapi.auth2.getAuthInstance()
         .signIn({scope: "https://www.googleapis.com/auth/youtube.readonly"})
         .then(function() { console.log("Sign-in successful"); },
@@ -18,12 +46,13 @@ function loadClient() {
 
 // Make sure the client is loaded and sign-in is complete before calling this method.
 function execute() {
-    return gapi.client.youtube.playlists.list({
+    return gapi.client.youtube.videos.list({
       "part": [
-        "snippet,contentDetails"
+        "snippet,contentDetails,statistics"
       ],
-      "maxResults": 25,
-      "mine": true
+      "id": [
+        "Ks-_Mh1QhMc,c0KYU2j0TM4,eIho2S0ZahI"
+      ]
     })
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
@@ -34,3 +63,4 @@ function execute() {
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "YOUR_CLIENT_ID"});
 });
+*/
