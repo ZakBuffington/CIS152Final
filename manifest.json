@@ -1,0 +1,11 @@
+{
+    "name": "YouTube Activity Tracker",
+    "version": "1.0.0",
+    "description": "tracks categories watched and provides reminders",
+    "manifest_version": 3,
+    "author": "Zak Buffington",
+    "action":{
+        "default_popup": "index.html",
+        "default_title": "YouTube Tracker"
+    }
+}
