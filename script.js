@@ -4,9 +4,19 @@ const videoIds = {
 
 async function fetchPlaylist(playlist) {
   console.log(playlist)
+  let playlist_id = trimYouTubePlaylistId(playlist)
+
 
 }
 
+function trimYouTubePlaylistId(raw_link){
+  // sample https://www.youtube.com/watch?v=zOjov-2OZ0E&list=PLQv_DHsse4pQ7EXSc9mi976ZQSukdcRpI&pp=gAQB
+  let string_link = String(raw_link)
+  let start_index = string_link.indexOf("list=PL") + 7 // length of "list=PL"
+  let output = string_link.slice(start_index)
+  console.log(output)
+  return output
+}
 
 class Video{
   // Add videoId and keep track of in linked list to limit api calls
