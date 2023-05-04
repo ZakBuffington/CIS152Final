@@ -1,17 +1,62 @@
-const videoIds = {
-  
+const videoCategories = {
+  1: "Film & Animation",
+  2: "Autos & Vehicles",
+  10: "Music",
+  15: "Pets & Animals",
+  17: "Sports",
+  18: "Short Movies",
+  19: "Travel & Events",
+  20: "Gaming",
+  21: "Videoblogging",
+  22: "People & Blogs",
+  23: "Comedy",
+  24: "Entertainment",
+  25: "News & Politics",
+  26: "Howto & Style",
+  27: "Education",
+  28: "Science & Technology",
+  29: "Nonprofits & Activism",
+  30: "Movies",
+  31: "Anime/Animation",
+  32: "Action/Adventure",
+  33: "Classics",
+  34: "Comedy",
+  35: "Documentary",
+  36: "Drama",
+  37: "Family",
+  38: "Foreign",
+  39: "Horror",
+  40: "Sci-Fi/Fantasy",
+  41: "Thriller",
+  42: "Shorts",
+  43: "Shows",
+  44: "Trailers"
 }
 
-const apiSample = {
-  
+const videoIdWithCategory = {
+  "GvgqDSnpRQM": 1,
+  "fIc_VEQ7Vo0": 42,
+  "V4DDt30Aat4": 1,
+  "07718Vcwcyc": 1, 
+  "XDgC4FMftpg": 1,
+  "OE63BYWdqC4": 20,
+  "RQbmXxU2dkg": 20,
+  "7nJdEXpvi1g": 20,
+  "7hakGJU9xco": 29,
+  "x9-F6dbCIHw": 28,
+  "gK7lUK0711E": 28,
+  "18TknKGC7tY": 1,
+  "CyRQJBBVI7g": 38
 }
+
+//GvgqDSnpRQM, fIc_VEQ7Vo0, V4DDt30Aat4, 07718Vcwcyc, XDgC4FMftpg, OE63BYWdqC4, RQbmXxU2dkg, 7nJdEXpvi1g, 7hakGJU9xco, x9-F6dbCIHw, gK7lUK0711E, 18TknKGC7tY, CyRQJBBVI7g
 
 async function fetchPlaylist(playlist) {
   let my_playlist = new VideoQueue()
   console.log(playlist)
   let playlist_id = trimYouTubePlaylistId(playlist)
+  // fetch playlist using API with playlist_id
   for (var i = 0; i < sampleApiReturn.items.length; i++){
-    console.log("got here")
     var item = sampleApiReturn.items[i]
     console.log(item.contentDetails.videoId)
     my_playlist.enqueue(item.contentDetails.videoId)
