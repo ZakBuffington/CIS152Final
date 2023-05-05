@@ -34,6 +34,7 @@ export const videoCategories = {
   44: "Trailers"
 }
 
+// would be result of API request
 const videoIdWithCategory = {
   "GvgqDSnpRQM": 1,
   "fIc_VEQ7Vo0": 42,
@@ -49,8 +50,6 @@ const videoIdWithCategory = {
   "18TknKGC7tY": 1,
   "CyRQJBBVI7g": 38
 }
-
-//GvgqDSnpRQM, fIc_VEQ7Vo0, V4DDt30Aat4, 07718Vcwcyc, XDgC4FMftpg, OE63BYWdqC4, RQbmXxU2dkg, 7nJdEXpvi1g, 7hakGJU9xco, x9-F6dbCIHw, gK7lUK0711E, 18TknKGC7tY, CyRQJBBVI7g
 
 async function fetchPlaylist(playlist) {
   let my_playlist = new VideoQueue()
@@ -78,7 +77,7 @@ function countCategories(my_playlist){
   categories.forEach((el) => {
     counts[el] = counts[el] ? (counts[el] + 1) : 1
   })
-  return counts
+  return counts, categories
 }
 
 function trimYouTubePlaylistId(raw_link){
