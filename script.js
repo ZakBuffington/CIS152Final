@@ -1,4 +1,5 @@
-const videoCategories = {
+export let export_var = countCategories(my_playlist)
+export const videoCategories = {
   1: "Film & Animation",
   2: "Autos & Vehicles",
   10: "Music",
@@ -59,10 +60,25 @@ async function fetchPlaylist(playlist) {
   for (var i = 0; i < sampleApiReturn.items.length; i++){
     var item = sampleApiReturn.items[i]
     console.log(item.contentDetails.videoId)
-    my_playlist.enqueue(item.contentDetails.videoId)
+    my_playlist.enqueue(item.contentDetails.videoId, videoIdWithCategory[item.contentDetails.videoId])
   }
+}
 
+function countCategories(my_playlist){
+  var current = my_playlist.first
 
+  const categories = []
+  const counts = {}
+
+  while (current.next){
+    categories.push(current.category)
+    current = current.next
+  }
+  categories.push(current.category)
+  categories.forEach((el) => {
+    counts[el] = counts[el] ? (counts[el] + 1) : 1
+  })
+  return counts
 }
 
 function trimYouTubePlaylistId(raw_link){
@@ -76,9 +92,10 @@ function trimYouTubePlaylistId(raw_link){
 
 class Video{
   // Add videoId and keep track of in linked list to limit api calls
-  constructor(value){
+  constructor(value, category=null){
     this.next = null
     this.value = value
+    this.category = null
   }
 }
 
@@ -89,8 +106,8 @@ class VideoQueue{
     this.last = null
   }
 
-  enqueue(value){
-    const newVideo = new Video(value)
+  enqueue(value, category=null){
+    const newVideo = new Video(value, category)
     if (!this.first){
       this.first = newVideo
       this.last = this.first
